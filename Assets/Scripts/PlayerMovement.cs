@@ -25,23 +25,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 camRight = cam.transform.right;
-        Vector3 camForward = cam.transform.forward;
 
-        // inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, -gravity,  Input.GetAxis("Vertical")* movespeed);
+        inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, -gravity,  Input.GetAxis("Vertical")* movespeed);
+
+        transform.LookAt(this.transform.position + GetCameraTurn() * inputVector);
+        rigid.velocity = GetCameraTurn() * inputVector;
         
-        Vector3 moveVector =   camForward * movespeed * Input.GetAxis("Vertical") + camRight * movespeed  * Input.GetAxis("Horizontal") - this.transform.up*gravity;
-        Vector3 xzVector = new Vector3(1, 0, 1);
-        transform.LookAt(this.transform.position + new Vector3( moveVector.normalized.x * xzVector.x , -gravity, moveVector.normalized.z * xzVector.z));
-        //  transform.LookAt(transform.position + new Vector3(inputVector.x, 0, inputVector.z));
-    
-      //  transform.rotation  = Quaternion.AngleAxis(cam.transform.rotation.y + transform.rotation.y, Vector3.up );
-          rigid.velocity = moveVector;
-        
-        }
-         
-     
     }
+         
+    private Quaternion GetCameraTurn()
+    {
+        return Quaternion.AngleAxis(cam.transform.rotation.eulerAngles.y,Vector3.up).normalized;
+    }
+     
+}
 
    
 
