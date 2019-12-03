@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float verticalVelocity;
-    private float jumpForce = 50f;
+    private float jumpForce = 100f;
     private float gravity = 2f;
     public float movespeed;
     public Rigidbody rigid;
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
-
+        transform.Rotate(new Vector3(0,0,0));
         inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, 0,  Input.GetAxis("Vertical")* movespeed);
         transform.LookAt(this.transform.position + GetCameraTurn() * inputVector);
         rigid.velocity = GetCameraTurn() * inputVector  - new Vector3(0, gravity, 0);
@@ -48,12 +48,23 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-         flight = false;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        {
+            flight = false;
+        }
+
+        //Debug.Log("ENTER " + collision.gameObject + " " + collision.gameObject.layer);
+        //Debug.Log("FLIGHT = " + flight);
     }
 
     private void OnCollisionExit(Collision collision)
     {
-         flight = true;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        {
+            flight = true;
+        }
+        //Debug.Log("EXIT " + collision.gameObject + " " + collision.gameObject.layer);
+        //Debug.Log("FLIGHT = " + flight);
     }
 
     private Quaternion GetCameraTurn()
