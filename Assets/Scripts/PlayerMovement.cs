@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private float verticalVelocity;
     private float jumpForce = 50f;
-    private float gravity = 2;
+    private float gravity = 2f;
     public float movespeed;
     public Rigidbody rigid;
     Vector3 inputVector;
@@ -18,22 +18,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-       rigid = this.GetComponent<Rigidbody>();
+        rigid = this.GetComponent<Rigidbody>();
         movespeed = 4f;
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
        if (flight)
         {
-            gravity = 3;
-        
+            gravity = 3f;
         }
-
        else
         {
             gravity = 0;
@@ -47,18 +42,20 @@ public class PlayerMovement : MonoBehaviour
 
         inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, 0,  Input.GetAxis("Vertical")* movespeed);
         transform.LookAt(this.transform.position + GetCameraTurn() * inputVector);
-        rigid.velocity = GetCameraTurn() * inputVector  - new Vector3(0, gravity);
+        rigid.velocity = GetCameraTurn() * inputVector  - new Vector3(0, gravity, 0);
     }
 
     
- private void OnCollisionEnter(Collision collision)
-     {
+    private void OnCollisionEnter(Collision collision)
+    {
          flight = false;
+    }
 
-     }private void OnCollisionExit(Collision collision)
-     {
+    private void OnCollisionExit(Collision collision)
+    {
          flight = true;
-     }
+    }
+
     private Quaternion GetCameraTurn()
     {
         return Quaternion.AngleAxis(cam.transform.rotation.eulerAngles.y,Vector3.up).normalized;
