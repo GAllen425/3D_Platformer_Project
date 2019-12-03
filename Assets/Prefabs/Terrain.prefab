@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7507987339071222377}
-  - component: {fileID: 3056938877760468086}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -32,20 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &3056938877760468086
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7507987339071222382}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
 --- !u!1001 &7507987338592405920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53,6 +38,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7507987339071222377}
     m_Modifications:
+    - target: {fileID: -8684251187902555887, guid: 0caeaa363bb4fd04899a19d62e16c7c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0caeaa363bb4fd04899a19d62e16c7c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -112,6 +102,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain_011219
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0caeaa363bb4fd04899a19d62e16c7c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224801822505238522, guid: 0caeaa363bb4fd04899a19d62e16c7c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5544520917123336037, guid: 0caeaa363bb4fd04899a19d62e16c7c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7047106248338541312, guid: 0caeaa363bb4fd04899a19d62e16c7c1,
         type: 3}

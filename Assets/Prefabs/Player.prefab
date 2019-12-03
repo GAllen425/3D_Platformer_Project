@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 1947387640778421176}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,6 +368,7 @@ MonoBehaviour:
   movespeed: 4
   rigid: {fileID: 1947387640778421176}
   cam: {fileID: 1947387639744709466}
+  flight: 1
 --- !u!54 &1947387640778421176
 Rigidbody:
   m_ObjectHideFlags: 0

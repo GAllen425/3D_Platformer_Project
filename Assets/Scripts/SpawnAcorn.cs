@@ -5,9 +5,11 @@ using UnityEngine;
 public class SpawnAcorn : MonoBehaviour
 {
     public GameObject acornPrefab;
+    public ItemManager itemManager;
     public static int acornCount = 0;
     void Start()
     {
+        itemManager = GameObject.Find("GameManager").GetComponent<ItemManager>();
         if (acornPrefab != null)
         {
             foreach (Transform child in transform)
@@ -67,6 +69,7 @@ public class SpawnAcorn : MonoBehaviour
                     //GetSpawnPosition(child.gameObject.transform.position, 5.0f),
                     Quaternion.identity);
                     //.transform.parent = child.gameObject.transform;
+        itemManager.AddItem("Acorn");
         return ret;
     }
 }
