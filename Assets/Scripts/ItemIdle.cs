@@ -6,9 +6,9 @@ public class ItemIdle : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public float rotateSpeed = 1.0f;
-    public float vertSpeed = 10.0f;
-    public float waitTime = 0.000001f;
+    public float rotateSpeed = 50.0f;
+    public float vertSpeed = 1.0f;
+    public float waitTime = 1f;
     public float epsilon = 0.05f;
     public Vector3 topPosition;
     public Vector3 bottomPosition;
@@ -17,6 +17,12 @@ public class ItemIdle : MonoBehaviour
     
     void Start()
     {
+        if (vertSpeed > 5.0f)
+        {
+            // Fast than this causes the item to escape the limits
+            vertSpeed = 5.0f;
+        }
+
         item = this.gameObject;
         bottomPosition = item.transform.position;
         topPosition = bottomPosition + new Vector3(0,heightDiff,0) ;
@@ -26,7 +32,8 @@ public class ItemIdle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // Rotate X degrees per second
+        transform.Rotate(0, rotateSpeed*Time.deltaTime, 0);
     }
 
     IEnumerator Move(Vector3 target)
@@ -39,7 +46,7 @@ public class ItemIdle : MonoBehaviour
             yield return null;
         }
 
-        //yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime);
 
         Vector3 newTarget = target.y == topPosition.y ? bottomPosition : topPosition;
 
