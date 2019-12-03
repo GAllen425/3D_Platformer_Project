@@ -7,8 +7,11 @@ public class SpawnAcorn : MonoBehaviour
     public GameObject acornPrefab;
     public ItemManager itemManager;
     public static int acornCount = 0;
+
+    public Scoring scoring;
     void Start()
     {
+        scoring = GameObject.Find("GameManager").GetComponent<Scoring>();
         itemManager = GameObject.Find("GameManager").GetComponent<ItemManager>();
         if (acornPrefab != null)
         {
@@ -70,6 +73,8 @@ public class SpawnAcorn : MonoBehaviour
                     Quaternion.identity);
                     //.transform.parent = child.gameObject.transform;
         itemManager.AddItem("Acorn");
+        scoring.AddRemainingScore();
+        
         return ret;
     }
 }
