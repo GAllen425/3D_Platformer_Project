@@ -19,17 +19,17 @@ public class PlayerMovement : MonoBehaviour
         
        rigid = this.GetComponent<Rigidbody>();
         movespeed = 4f;
-        gravity = 0f;
+        gravity = .0f;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, -gravity,  Input.GetAxis("Vertical")* movespeed);
+        inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, 0,  Input.GetAxis("Vertical")* movespeed);
 
         transform.LookAt(this.transform.position + GetCameraTurn() * inputVector);
-        rigid.velocity = GetCameraTurn() * inputVector;
+        rigid.velocity = GetCameraTurn() * inputVector - new Vector3(0,gravity,0);
         
     }
          
