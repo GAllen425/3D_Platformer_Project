@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float verticalVelocity;
-    private float gravity;
-    
+    private float jumpForce = 50f;
+    private float gravity = 2;
     public float movespeed;
     public Rigidbody rigid;
     Vector3 inputVector;
     public GameObject cam;
+    public bool flight = true;
+   
     
 
     // Start is called before the first frame update
@@ -19,20 +21,44 @@ public class PlayerMovement : MonoBehaviour
         
        rigid = this.GetComponent<Rigidbody>();
         movespeed = 4f;
-        gravity = 0f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, -gravity,  Input.GetAxis("Vertical")* movespeed);
-
-        transform.LookAt(this.transform.position + GetCameraTurn() * inputVector);
-        rigid.velocity = GetCameraTurn() * inputVector;
         
+       if (flight)
+        {
+            gravity = 3;
+        
+        }
+
+       else
+        {
+            gravity = 0;
+
+            if (Input.GetKeyDown(KeyCode.Space) )
+            {
+                rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            
+        }
+
+        inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, 0,  Input.GetAxis("Vertical")* movespeed);
+        transform.LookAt(this.transform.position + GetCameraTurn() * inputVector);
+        rigid.velocity = GetCameraTurn() * inputVector  - new Vector3(0, gravity);
     }
-         
+
+    
+ private void OnCollisionEnter(Collision collision)
+     {
+         flight = false;
+
+     }private void OnCollisionExit(Collision collision)
+     {
+         flight = true;
+     }
     private Quaternion GetCameraTurn()
     {
         return Quaternion.AngleAxis(cam.transform.rotation.eulerAngles.y,Vector3.up).normalized;
