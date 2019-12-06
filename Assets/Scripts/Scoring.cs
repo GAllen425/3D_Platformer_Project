@@ -12,15 +12,22 @@ public class Scoring : MonoBehaviour
     public Text remainingText;
     string remainingString = "Remaining: ";
     string playerString = "Score: ";
-
-
     
-    void Start()
+    void Awake()
     {
-        playerScoreText = GameObject.Find("PlayerScoreText").GetComponent<Text>();
-        remainingText = GameObject.Find("RemainingText").GetComponent<Text>();
-        playerScoreText.text = playerString + playerScore.ToString();
-        remainingText.text = remainingString + remaining.ToString();
+        Debug.Log("Started");
+        playerScoreText = GameObject.FindGameObjectWithTag("PlayerScoreText").GetComponent<Text>();
+        remainingText = GameObject.FindGameObjectWithTag("RemainingText").GetComponent<Text>();
+        
+        if (playerScoreText != null && remainingText != null)
+        {
+            playerScoreText.text = playerString + playerScore.ToString();
+            remainingText.text = remainingString + remaining.ToString();
+        }
+        else
+        {
+            Debug.Log("playerScoreText or remainingText is null");
+        }
     }
 
     public void AddPlayerScore()
@@ -39,5 +46,10 @@ public class Scoring : MonoBehaviour
     {
         remaining--;
         remainingText.text = remainingString + remaining.ToString();
+
+        if (GameManager.instance.playerActive && remaining == 0)
+        {
+            GameManager.instance.EndGame();
+        }
     }
 }

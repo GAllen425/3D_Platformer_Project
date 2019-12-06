@@ -17,7 +17,11 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool isWalkingPressed = (Input.GetKey(KeyCode.W) || (Input.GetKey(KeyCode.A)) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D));
+        bool isWalkingPressed = ( (Input.GetKey(KeyCode.W) ||
+                                   Input.GetKey(KeyCode.A) ||
+                                   Input.GetKey(KeyCode.S) || 
+                                   Input.GetKey(KeyCode.D)) &&
+                                   GameManager.instance.playerActive);
         animator.SetBool("isRunning", isWalkingPressed);
 
        

@@ -25,25 +25,33 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (flight)
+        if (GameManager.instance.playerActive)   
         {
-            gravity = 3f;
-        }
-       else
-        {
-            gravity = 0;
-
-            if (Input.GetKeyDown(KeyCode.Space) )
+            if (flight)
             {
-                rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                gravity = 3f;
             }
-            
+            else
+            {
+                gravity = 0;
+
+                if (Input.GetKeyDown(KeyCode.Space) )
+                {
+                    rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                }
+                
+            }
+            transform.Rotate(new Vector3(0,0,0));
+            inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, 0,  Input.GetAxis("Vertical")* movespeed);
+            transform.LookAt(this.transform.position + GetCameraTurn() * inputVector);
+            rigid.velocity = GetCameraTurn() * inputVector  - new Vector3(0, gravity, 0);
         }
-        transform.Rotate(new Vector3(0,0,0));
-        inputVector = new Vector3(Input.GetAxis("Horizontal") * movespeed, 0,  Input.GetAxis("Vertical")* movespeed);
-        transform.LookAt(this.transform.position + GetCameraTurn() * inputVector);
-        rigid.velocity = GetCameraTurn() * inputVector  - new Vector3(0, gravity, 0);
+        else
+        {
+            rigid.velocity = new Vector3(0,0,0);
+        }   
     }
+
 
     
     private void OnCollisionEnter(Collision collision)

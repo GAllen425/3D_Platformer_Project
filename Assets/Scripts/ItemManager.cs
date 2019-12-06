@@ -5,14 +5,11 @@ using UnityEngine.Events;
 
 public class ItemManager : MonoBehaviour
 {
-    public Dictionary<string,int> itemDictionary;
-    public UnityEvent invokeMethod;
+    public Dictionary<string,int> itemDictionary = new Dictionary<string,int>();
 
     void Start()
     {
-        itemDictionary = new Dictionary<string, int>();
-
-        invokeMethod.Invoke();
+        //itemDictionary = new Dictionary<string, int>();
     }
 
     void Update()
