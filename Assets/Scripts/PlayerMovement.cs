@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float verticalVelocity;
-    private float jumpForce = 100f;
+    private float jumpForce = 200f;
     private float gravity = 2f;
     public float movespeed;
     public Rigidbody rigid;
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigid = this.GetComponent<Rigidbody>();
-        movespeed = 4f;
+       // movespeed = 4f;
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
        if (flight)
         {
-            gravity = 3f;
+            gravity = 9f;
         }
        else
         {
@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) )
             {
                 rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+               
             }
             
         }
