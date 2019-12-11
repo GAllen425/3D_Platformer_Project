@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: 21d2b60c4d07cbc42bf50b944910a22b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Woodland.unity
     guid: b55ed7207b5cfc14e8c30f85fd181a56
+  - enabled: 1
+    path: Assets/Scenes/Woodland_BigTerrain.unity
+    guid: 0b48d0ab92bf3fa4dbe1b4a351652746
   m_configObjects: {}
