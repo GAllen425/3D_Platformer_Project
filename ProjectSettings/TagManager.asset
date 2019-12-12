@@ -10,6 +10,7 @@ TagManager:
   - countdownText
   - timeLeftText
   - gameOver
+  - Enemy
   layers:
   - Default
   - TransparentFX
