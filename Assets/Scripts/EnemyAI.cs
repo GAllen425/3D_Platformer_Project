@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-
+    public Scoring scoring;
     public GameObject acornPrefab;
     Vector3 acorn;
     public float speed = 5;
@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         
+        scoring = GameObject.Find("GameManager").GetComponent<Scoring>();
     }
 
     // Update is called once per frame
@@ -32,6 +32,7 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Distance(acornPrefab.transform.position, this.transform.position) < eatDistance)
         {
             Destroy(acornPrefab);
+            scoring.RemoveRemainingScore();
         }
     }
 }
