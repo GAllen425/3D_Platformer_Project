@@ -23,8 +23,20 @@ public class ItemPickup : MonoBehaviour
             collision.gameObject.GetComponent<PlayerItems>().AddItem(this.gameObject.tag);
             itemManager.RemoveItem(this.gameObject.tag);
             Destroy(this.gameObject);
+
+
         }
+
+       /* if (collision.gameObject.tag == "Enemy")
+        {
+          Destroy(this.gameObject); 
+        }
+        */
+               
+       
+        
     }
 
+    
 
 }
