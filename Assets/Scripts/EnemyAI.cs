@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -20,8 +21,9 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         acornPrefab = GameObject.FindGameObjectWithTag("Acorn");
-        if (Vector3.Distance(acornPrefab.transform.position, this.transform.position) < acornDetectionRange) 
+         if (Vector3.Distance(acornPrefab.transform.position, this.transform.position) < acornDetectionRange) 
         {
+            
             Vector3 direction = acornPrefab.transform.position - this.transform.position;
            // direction.y = 0;
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.1f);
@@ -29,10 +31,11 @@ public class EnemyAI : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, acornPrefab.transform.position, move);
         }
 
-        if (Vector3.Distance(acornPrefab.transform.position, this.transform.position) < eatDistance)
+        /* if (Vector3.Distance(acornPrefab.transform.position, this.transform.position) < eatDistance)
         {
-            Destroy(acornPrefab);
+            Debug.Log("EATING ACORN");
+           // Destroy(acornPrefab);
             scoring.RemoveRemainingScore();
-        }
+        }*/
     }
 }
