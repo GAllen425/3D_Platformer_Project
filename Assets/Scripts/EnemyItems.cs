@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyItems : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject enemy;
+ 
+    public Scoring scoring;
+
     void Start()
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        scoring = GameObject.Find("GameManager").GetComponent<Scoring>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -21,9 +21,9 @@ public class EnemyItems : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-
+            Debug.Log("EATING ACORN");
             Destroy(this.gameObject);
-
+            scoring.RemoveRemainingScore();
 
         }
     }
