@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static GameManager instance = null;
-    public GameObject scene = null;
     public GameObject endGameSplash = null;
     
     public bool playerActive = false;
