@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
-
-    public GameObject acornPrefab;
     public Scoring scoring;
+    public GameObject acornPrefab;
     Vector3 acorn;
     public float speed = 5;
     public float eatDistance =1f;
@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         scoring = GameObject.Find("GameManager").GetComponent<Scoring>();
+        scoring = GameObject.Find("GameManager").GetComponent<Scoring>();
     }
 
     // Update is called once per frame
@@ -39,5 +39,12 @@ public class EnemyAI : MonoBehaviour
                 Destroy(acornPrefab);
             }
         }
+
+        /* if (Vector3.Distance(acornPrefab.transform.position, this.transform.position) < eatDistance)
+        {
+            Debug.Log("EATING ACORN");
+           // Destroy(acornPrefab);
+            scoring.RemoveRemainingScore();
+        }*/
     }
 }
